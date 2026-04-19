@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UniEvent Hub</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">🎓 UniEvent Hub</div>
+  <nav>
+    <a href="#events">Events</a>
+    <a href="#recommended">Recommended</a>
+    <a href="#organizer">Organizer Portal</a>
+  </nav>
+</header>
+
+<!-- SEARCH -->
+<section class="search-section">
+  <h2>🔍 Find Events</h2>
+
+  <div class="search-grid">
+    <input id="college" placeholder="Search by college...">
+    <input id="location" placeholder="Search by location...">
+
+    <select id="category">
+      <option value="">All Categories</option>
+      <option>Tech</option>
+      <option>Cultural</option>
+      <option>Sports</option>
+    </select>
+
+    <input type="date" id="startDate">
+    <input type="date" id="endDate">
+  </div>
+
+  <button class="primary-btn" onclick="searchEvents()">Search Events</button>
+</section>
+
+<!-- RECOMMENDED -->
+<section id="recommended-section">
+  <h2>✨ Recommended for You</h2>
+  <div class="card-container" id="recommended"></div>
+</section>
+
+<!-- ALL EVENTS -->
+<section id="events">
+  <h2>All Events</h2>
+  <div class="card-container" id="eventsList"></div>
+</section>
+
+<!-- ORGANIZER -->
+<section id="organizer" class="organizer-section">
+  <h2>Organizer Portal</h2>
+  <p>Host your own campus event and manage registrations.</p>
+
+  <div class="form-grid">
+    <input id="title" placeholder="Event Title">
+    <input id="collegeName" placeholder="College Name">
+    <input id="eventLocation" placeholder="Location">
+    <input type="date" id="eventDate">
+
+    <select id="eventCategory">
+      <option>Tech</option>
+      <option>Cultural</option>
+      <option>Sports</option>
+    </select>
+  </div>
+
+  <textarea id="description" placeholder="Description"></textarea>
+
+  <button class="primary-btn full" onclick="addEvent()">Create Event</button>
+</section>
+
+<footer>
+  © 2024 UniEvent Hub. Built for students.
+</footer>
+
+<script src="js/index.js"></script>
+</body>
+</html>
