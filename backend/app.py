@@ -1,10 +1,17 @@
 from flask import Flask
+from routes.ai_routes import ai_routes
 from flask_cors import CORS
 from database.db import db
 import config
 
 app = Flask(__name__)
+app.register_blueprint(ai_routes, url_prefix="/api")
 CORS(app)
+
+@app.route("/")
+def home():
+    return "Backend is running ✅"
+
 
 app.config['SQLALCHEMY_DATABASE_URI'] = config.DB_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -28,3 +35,4 @@ if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+
