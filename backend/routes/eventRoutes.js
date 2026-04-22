@@ -3,34 +3,35 @@ const router = express.Router();
 const db = require("../config/db");
 
 
-// GET all events
+// ✅ 1. CREATE EVENT (Organizer)
+router.post("/", (req, res) => {
+  const { title, category, college, location, event_date, description } = req.body;
+
+  const sql = `
+    INSERT INTO events (title, category, college, location, event_date, description)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `;
+
+  db.query(sql, [title, category, college, location, event_date, description],
+    (err, result) => {
+      if (err) return res.status(500).json(err);
+
+      res.json({ message: "Event created successfully" });
+    });
+});
+
+
+// ✅ 2. GET ALL EVENTS (Student view)
 router.get("/", (req, res) => {
-  db.query("SELECT * FROM events", (err, result) => {
+  db.query("SELECT * FROM events ORDER BY event_date ASC", (err, result) => {
     if (err) return res.status(500).json(err);
+
     res.json(result);
   });
 });
 
-// ADD event
-router.post("/", (req, res) => {
-  const { title, category, college, location, event_date, description, embedding } = req.body;
 
-  const sql = `
-    INSERT INTO events (title, category, college, location, event_date, description, embedding)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
-  `;
-
-  db.query(
-    sql,
-    [title, category, college, location, event_date, description, JSON.stringify(embedding)],
-    (err, result) => {
-      if (err) return res.status(500).json(err);
-      res.json({ message: "Event added" });
-    }
-  );
-});
-
-// SEARCH
+// ✅ 3. SEARCH EVENTS
 router.get("/search", (req, res) => {
   const { college, location, category } = req.query;
 
@@ -54,6 +55,7 @@ router.get("/search", (req, res) => {
 
   db.query(sql, params, (err, result) => {
     if (err) return res.status(500).json(err);
+
     res.json(result);
   });
 });
