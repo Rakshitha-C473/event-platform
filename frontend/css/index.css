@@ -22,6 +22,7 @@ body {
 }
 
 /* SEARCH */
+/* SEARCH SECTION */
 .search-section {
   background: white;
   margin: 30px;
@@ -35,7 +36,8 @@ body {
   gap: 15px;
 }
 
-.search-grid input, select {
+.search-grid input,
+.search-grid select {
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #cbd5e1;
@@ -51,11 +53,12 @@ body {
   color: white;
   font-size: 15px;
   cursor: pointer;
+
+  position: relative;
+  z-index: 10;   /* 🔥 FIX CLICK ISSUE */
 }
 
-.primary-btn.full {
-  width: 100%;
-}
+
 
 /* CARDS */
 .card-container {
@@ -109,7 +112,16 @@ body {
   margin: 30px;
   padding: 25px;
   border-radius: 12px;
+}search-section {
+  background: white;
+  margin: 30px;
+  padding: 25px;
+  border-radius: 12px;
 }
+
+.search-grid {
+  display: grid;
+  grid-template-columns: 
 
 .form-grid {
   display: grid;

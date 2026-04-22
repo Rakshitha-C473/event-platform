@@ -83,20 +83,29 @@ function searchEvents() {
   renderEvents(filtered);
 }
 
-function addEvent() {
-  const newEvent = {
-    title: document.getElementById("title").value,
-    category: document.getElementById("eventCategory").value,
-    date: document.getElementById("eventDate").value,
-    college: document.getElementById("collegeName").value,
-    location: document.getElementById("eventLocation").value,
-    description: document.getElementById("description").value
-  };
+function searchEvents() {
+  console.log("Search button clicked"); // 🔍 debug
 
-  events.push(newEvent);
-  renderEvents(events);
+  const collegeInput = document.getElementById("searchKeyword");
+  const locationInput = document.getElementById("searchLocation");
+  const categoryInput = document.getElementById("searchCategory");
 
-  alert("Event Created Successfully!");
+  if (!collegeInput || !locationInput || !categoryInput) {
+    console.error("Input fields not found");
+    return;
+  }
+
+  const college = collegeInput.value.toLowerCase();
+  const location = locationInput.value.toLowerCase();
+  const category = categoryInput.value;
+
+  const filtered = events.filter(e =>
+    (!college || (e.college || "").toLowerCase().includes(college)) &&
+    (!location || (e.location || "").toLowerCase().includes(location)) &&
+    (!category || e.category === category)
+  );
+
+  renderEvents(filtered);
 }
 
 function register(eventName) {
